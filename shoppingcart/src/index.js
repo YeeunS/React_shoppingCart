@@ -5,11 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import Cart from "./components/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Cart />
-  </React.StrictMode>
-);
+root.render(<Cart />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

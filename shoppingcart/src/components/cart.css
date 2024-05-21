@@ -1,5 +1,10 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
 .cart-page {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
 }
@@ -7,6 +12,7 @@
 .inventory-container,
 .cart-container {
   width: 45%;
+  min-width: 300px;
 }
 
 .inventory-item,
@@ -23,12 +29,19 @@
 .inventory-item span,
 .cart-item span {
   flex: 1;
+  margin: 0 10px;
+}
+
+.inventory-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap for better spacing */
 }
 
 .inventory-item button,
 .cart-item button {
-  margin-left: 20px;
-  padding: 10px 10px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -42,7 +55,6 @@
 .increase-btn {
   background-color: #37953a;
   color: white;
-  margin-right: 100px;
 }
 
 .add-to-cart-btn {
@@ -72,5 +84,6 @@ h2 {
 }
 
 .numItemStatement {
-  margin-left: 135px;
+  min-width: 30px;
+  text-align: center;
 }

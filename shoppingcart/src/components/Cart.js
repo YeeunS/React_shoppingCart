@@ -1,23 +1,13 @@
 import React, { Component } from "react";
 import "./cart.css";
-
-// Mock API functions (have no idea how to do with db.json, so I used it in static data temporarily)
-const getInventory = () => {
-  return Promise.resolve([
-    { id: 1, name: "apple", quantity: 0 },
-    { id: 2, name: "peach", quantity: 0 },
-    { id: 3, name: "blueberry", quantity: 0 },
-    { id: 4, name: "mango", quantity: 0 },
-  ]);
-};
-
-const getCart = () => {
-  return Promise.resolve([]);
-};
-
-const updateCart = (cart) => {
-  return Promise.resolve(cart);
-};
+import {
+  getInventory,
+  getCart,
+  addToCart,
+  updateCart,
+  deleteFromCart,
+  checkout,
+} from "../APIs/api";
 
 export default class Cart extends Component {
   constructor(props) {
@@ -30,9 +20,13 @@ export default class Cart extends Component {
   }
 
   async componentDidMount() {
-    const inventoryData = await getInventory();
-    const cartData = await getCart();
-    this.setState({ inventory: inventoryData, cart: cartData });
+    try {
+      const inventoryData = await getInventory();
+      const cartData = await getCart();
+      this.setState({ inventory: inventoryData, cart: cartData });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
   handleIncrease = (itemId) => {
@@ -68,25 +62,30 @@ export default class Cart extends Component {
           ? { ...cartItem, amount: cartItem.amount + amount }
           : cartItem
       );
+      await updateCart(existingItem.id, {
+        amount: updatedCart.find((cartItem) => cartItem.id === existingItem.id)
+          .amount,
+      });
     } else {
-      updatedCart = [...this.state.cart, { ...item, amount }];
+      const newItem = { ...item, amount };
+      updatedCart = [...this.state.cart, newItem];
+      await addToCart(newItem);
     }
 
     this.setState({ cart: updatedCart });
-    await updateCart(updatedCart);
   };
 
   removeFromCart = async (itemToRemove) => {
+    await deleteFromCart(itemToRemove.id);
     const updatedCart = this.state.cart.filter(
       (item) => item.id !== itemToRemove.id
     );
     this.setState({ cart: updatedCart });
-    await updateCart(updatedCart);
   };
 
   handleCheckout = async () => {
+    await checkout();
     this.setState({ cart: [] });
-    await updateCart([]);
   };
 
   render() {
@@ -97,21 +96,23 @@ export default class Cart extends Component {
           {this.state.inventory.map((item) => (
             <div key={item.id} className="inventory-item">
               <span>{item.name}</span>
-              <button
-                className="decrease-btn"
-                onClick={() => this.handleDecrease(item.id)}
-              >
-                -
-              </button>
-              <span className="numItemStatement">
-                {this.state.inputAmounts[item.id] || 0}
-              </span>
-              <button
-                className="increase-btn"
-                onClick={() => this.handleIncrease(item.id)}
-              >
-                +
-              </button>
+              <div className="inventory-controls">
+                <button
+                  className="decrease-btn"
+                  onClick={() => this.handleDecrease(item.id)}
+                >
+                  -
+                </button>
+                <span className="numItemStatement">
+                  {this.state.inputAmounts[item.id] || 0}
+                </span>
+                <button
+                  className="increase-btn"
+                  onClick={() => this.handleIncrease(item.id)}
+                >
+                  +
+                </button>
+              </div>
               <button
                 className="add-to-cart-btn"
                 onClick={() => this.addToCart(item)}
