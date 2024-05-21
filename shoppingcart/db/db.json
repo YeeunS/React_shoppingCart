@@ -16,6 +16,18 @@
     {
       "id": "4",
       "name": "mango"
+    },
+    {
+      "id": "5",
+      "name": "banana"
+    },
+    {
+      "id": "6",
+      "name": "papaya"
+    },
+    {
+      "id": "7",
+      "name": "dragonfruit"
     }
   ]
 }

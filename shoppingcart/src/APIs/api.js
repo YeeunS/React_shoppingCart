@@ -8,23 +8,23 @@ export const getInventory = () => {
   return fetch(`${URL}/inventory`).then((res) => res.json());
 };
 
-export const addToCart = (inventoryItem) => {
+export const addToCart = (item) => {
   return fetch(`${URL}/cart`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(inventoryItem),
+    body: JSON.stringify(item),
   }).then((res) => res.json());
 };
 
-export const updateCart = (id, newAmount) => {
+export const updateCart = (id, amount) => {
   return fetch(`${URL}/cart/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newAmount),
+    body: JSON.stringify(amount),
   }).then((res) => res.json());
 };
 

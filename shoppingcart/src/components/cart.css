@@ -2,12 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px;
+  padding: 30px;
 }
 
 .inventory-container,
 .cart-container {
-  width: 45%;
+  width: 40%;
   min-width: 300px;
 }
 
@@ -29,12 +29,26 @@
 }
 
 .inventory-controls {
-  display: fixed;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 40px;
+}
+
+.inventory-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  align-items: center;
+  gap: 40px;
+}
+
+.inventory-item span {
+  text-align: left;
+}
+
+.numItemStatement {
+  min-width: 14px;
+  text-align: center;
 }
 
 .inventory-item button,
@@ -53,13 +67,11 @@
 .increase-btn {
   background-color: #37953a;
   color: white;
-  margin-right: 100px;
 }
 
 .add-to-cart-btn {
   background-color: #1a79c7;
   color: white;
-  margin-right: 100px;
 }
 
 .delete-btn {
@@ -81,9 +93,4 @@
 h2 {
   text-align: center;
   margin-bottom: 20px;
-}
-
-.numItemStatement {
-  min-width: 30px;
-  text-align: center;
 }
