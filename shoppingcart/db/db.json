@@ -1,0 +1,21 @@
+{
+  "cart": [],
+  "inventory": [
+    {
+      "id": "1",
+      "name": "apple"
+    },
+    {
+      "id": "2",
+      "name": "peach"
+    },
+    {
+      "id": "3",
+      "name": "blueberry"
+    },
+    {
+      "id": "4",
+      "name": "mango"
+    }
+  ]
+}

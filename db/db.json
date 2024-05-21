@@ -1,9 +1,0 @@
-{
-  "cart": [],
-  "inventory": [
-    { "id": 1, "name": "apple", "quantity": 0 },
-    { "id": 2, "name": "peach", "quantity": 0 },
-    { "id": 3, "name": "blueberry", "quantity": 0 },
-    { "id": 4, "name": "mango", "quantity": 0 }
-  ]
-}
