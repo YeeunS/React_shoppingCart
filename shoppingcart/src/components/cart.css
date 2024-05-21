@@ -42,7 +42,7 @@
 .increase-btn {
   background-color: #37953a;
   color: white;
-  margin-right: 90px;
+  margin-right: 100px;
 }
 
 .add-to-cart-btn {
@@ -72,5 +72,5 @@ h2 {
 }
 
 .numItemStatement {
-  margin-left: 95px;
+  margin-left: 135px;
 }
